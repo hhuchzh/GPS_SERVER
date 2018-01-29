@@ -12,6 +12,8 @@ using namespace oracle::occi;
 Environment *env;
 Connection  *con;
 
+Statement *pStmt = NULL;	  // Statement对象
+
 static int connect_db()
 {
     string name = "youtu";
@@ -44,7 +46,6 @@ static int  check_db_Time()
  *       * the employees table and display the results
  *       */
 
-  	Statement *pStmt = NULL;	  // Statement对象
 	pStmt = con->createStatement();
 	if(NULL == pStmt){
 		LOG_ERROR("createStatement error.\n");
@@ -74,11 +75,8 @@ static int  check_db_Time()
 
 static int Write_DB(SMsgDataReq *data,char device_id[8])
 {
-	Statement *pStmt = NULL;	  // Statement对象
-	pStmt = con->createStatement();
 	if(NULL == pStmt){
-		LOG_ERROR("createStatement error.\n");
-		return -1;
+		pStmt = con->createStatement();
 	}
 
 	char time[50];
@@ -87,12 +85,18 @@ static int Write_DB(SMsgDataReq *data,char device_id[8])
 	
 	unsigned int id;
 
+	LOG_DEBUG("device ID:%s\n", device_id);
+	LOG_DEBUG("speed:%d\n", data->speed);
+	LOG_DEBUG("GPS time:%s\n", time);
+
 	char sql[1000]={0};
 	string sql_sort;
 	//sql_sort="INSERT INTO B_GPS_INFO (device_id, latitude,longitude,heading,speed,lat_type,lng_type,cell_id,gps_time)\ 
 	//	                        VALUES('"&id&"','"&data->latitude&"','"&data->longitude&"','"&data->heading&"','"&data->speed&"',\
 	//	                        '"&data->latitude_type&"','"&data->longitude_type&"','"&data->cell_id&"',to_data(time,'YYYY-MM-DD HH24:MI:SS'))";
-	sprintf(sql, "insert into B_GPS_INFO(device_id, latitude,longitude,heading,speed,lat_type,lng_type,cell_id,gps_time) values(%llu, %d, %d, %d, %d, %d, %d,to_date(:1,'YYYY-MM-DD HH24:MI:SS')", id, data->latitude,data->latitude,data->latitude,data->latitude,data->latitude,data->latitude,data->latitude);
+	sprintf(sql, "insert into B_GPS_INFO(device_id, latitude,longitude,heading,speed,lat_type,lng_type,cell_id,gps_time) \
+	                                     values(%s, %d, %d, %d, %d, %d, %d,to_date(:1,'YYYY-MM-DD HH24:MI:SS')",\
+	                                            device_id, data->latitude,data->longitude,data->heading,data->speed,data->latitude_type,data->longitude_type,data->cell_id);
 	
 	pStmt->setString(1, time);
 	//--------插入---------
@@ -155,9 +159,9 @@ static int process_data_request(SGpsUser *user, unsigned char *msg, size_t sz)
 		user->update = 1;
 		LOG_DEBUG("[Engine:%d][FD:0x%x]process data msg, seq[%d]", user->engine->engine_no, user->fd, req.seq);
 		/*Fix me*/
-                connect_db();
-                check_db_Time();
-		//Write_DB(&req,user->device_id);
+        connect_db();
+        check_db_Time();
+		Write_DB(&req,user->device_id);
 	}
 
 	return ret;
