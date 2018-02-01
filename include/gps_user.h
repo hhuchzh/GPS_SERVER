@@ -27,7 +27,7 @@ typedef struct _GpsUser {
 	int update;/*1: receive gps client msg, 0 not*/
 	int check_no;/*max 3*/
 	unsigned short seq;
-	char device_id[8];
+	unsigned char device_id[8];
 }SGpsUser;
 
 

@@ -67,42 +67,52 @@ static int  check_db_Time()
 	}
 
  
-	pStmt->closeResultSet(pRs);
-	con->terminateStatement(pStmt);
+	//pStmt->closeResultSet(pRs);
+	//con->terminateStatement(pStmt);
 	return 1;
 	
 }
 
-static int Write_DB(SMsgDataReq *data,char device_id[8])
+static int Write_DB(SMsgDataReq *data,unsigned char device_id[8])
 {
 	if(NULL == pStmt){
 		pStmt = con->createStatement();
 	}
 
+        char strid[17];
+        sprintf(strid,"%02x%02x%02x%02x%02x%02x%02x%02x",device_id[0],device_id[1],device_id[2],device_id[3],device_id[4],device_id[5],device_id[6],device_id[7]);
+	strid[16]=0;
 	char time[50];
 	//INSERT INTO FLOOR VALUES ( to_date ( '2007-12-20 18:31:34' , 'YYYY-MM-DD HH24:MI:SS' ) ) ;
-	sprintf(time,"20%d-%d-%d %d-%d-%d",data->year,data->month,data->day,data->hour,data->minute,data->second);
+	sprintf(time,"20%d-%d-%d %d:%d:%d",data->year,data->month,data->day,data->hour+8,data->minute,data->second);
+        string gps_time;
+	gps_time=time;
 	
 	unsigned int id;
+        float latitude=(float)data->latitude/30000/60;
+        float longitude=(float)data->longitude/30000/60;
 
-	LOG_DEBUG("device ID:%s\n", device_id);
-	LOG_DEBUG("speed:%d\n", data->speed);
-	LOG_DEBUG("GPS time:%s\n", time);
+	LOG_DEBUG("device ID:%s\n", strid);
+	LOG_DEBUG("GPS time:%s\n",  time);
+	LOG_DEBUG("latitude:%f\n", latitude);
+	LOG_DEBUG("longitude:%f\n", longitude);
+	LOG_DEBUG("heading:%d\n", data->heading);
+	LOG_DEBUG("speed:%0x\n", data->speed);
+	LOG_DEBUG("lat_type:%d\n", data->latitude_type);
+	LOG_DEBUG("long_type:%d\n", data->longitude_type);
+	LOG_DEBUG("cell_id:%d\n", data->cell_id);
 
 	char sql[1000]={0};
-	string sql_sort;
-	//sql_sort="INSERT INTO B_GPS_INFO (device_id, latitude,longitude,heading,speed,lat_type,lng_type,cell_id,gps_time)\ 
-	//	                        VALUES('"&id&"','"&data->latitude&"','"&data->longitude&"','"&data->heading&"','"&data->speed&"',\
-	//	                        '"&data->latitude_type&"','"&data->longitude_type&"','"&data->cell_id&"',to_data(time,'YYYY-MM-DD HH24:MI:SS'))";
-	sprintf(sql, "insert into B_GPS_INFO(device_id, latitude,longitude,heading,speed,lat_type,lng_type,cell_id,gps_time) \
-	                                     values(%s, %d, %d, %d, %d, %d, %d,to_date(:1,'YYYY-MM-DD HH24:MI:SS')",\
-	                                            device_id, data->latitude,data->longitude,data->heading,data->speed,data->latitude_type,data->longitude_type,data->cell_id);
 	
-	pStmt->setString(1, time);
-	//--------²åÈë---------
-	// Ö¸¶¨DMLÎª×Ô¶¯commit
+	sprintf(sql, "insert into B_GPS_INFO(device_id, latitude,longitude,heading,speed,lat_type,lng_type,cell_id,gps_time) \
+	             values(%s,%f,%f,%d,%d,%d,%d,%d,to_date(\'%s\','YYYY-MM-DD HH24:MI:SS'))",strid,latitude,longitude,data->heading,data->speed,data->latitude_type,data->longitude_type,data->cell_id,time);
+        
+	LOG_DEBUG("sql:%s\n", sql);
+	//to_date('"&time&"','YYYY-MM-DD HH24:MI:SS')
+	//TO_TIMESTAMP(:time, 'YYYY-MM-DD HH24:MI:SS')
+
 	pStmt->setAutoCommit(TRUE);
-	// ÉèÖÃÖ´ÐÐµÄSQLÓï¾
+	
 	//pStmt->setSQL("INSERT INTO B_GPS_INFO (device_id, latitude,longitude,heading,speed,lat_type,lng_type,cell_id,gps_time) VALUES ('"++"', 432443,65432,2,50,3435,498,123456,to_date('2004/05/07 13:23:44','yyyy/mm/dd hh24:mi:ss'))");
 	pStmt->setSQL(sql);
 	// Ö´ÐÐSQLÓï¾ä
@@ -149,6 +159,7 @@ static int process_data_request(SGpsUser *user, unsigned char *msg, size_t sz)
 	int len = 0;
 	SMsgDataReq req;
 	LOG_DEBUG("[Engine:%d][FD:0x%x]process data msg", user->engine->engine_no, user->fd);
+	LOG_DEBUG("raw data msg=%0x", msg);
 	ret = parse_msg_data_req(msg, (int)sz, &req);
 	if (ret == 1) {	
 		if (((user->seq + 1) % 0xffff)  != (req.seq % 0xffff)) {
@@ -159,8 +170,8 @@ static int process_data_request(SGpsUser *user, unsigned char *msg, size_t sz)
 		user->update = 1;
 		LOG_DEBUG("[Engine:%d][FD:0x%x]process data msg, seq[%d]", user->engine->engine_no, user->fd, req.seq);
 		/*Fix me*/
-        connect_db();
-        check_db_Time();
+        	connect_db();
+        	check_db_Time();
 		Write_DB(&req,user->device_id);
 	}
 
