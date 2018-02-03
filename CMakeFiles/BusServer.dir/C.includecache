@@ -6,18 +6,6 @@
 
 #IncludeRegexTransform: 
 
-/root/oracle_test/abc/src/dispatcher.c
-errno.h
--
-string.h
--
-dispatcher.h
-/root/oracle_test/abc/src/dispatcher.h
-gps_user.h
-/root/oracle_test/abc/src/gps_user.h
-logger.h
-/root/oracle_test/abc/src/logger.h
-
 /root/oracle_test/abc/src/gps_user.c
 assert.h
 -
@@ -31,16 +19,6 @@ logger.h
 /root/oracle_test/abc/src/logger.h
 occi.h
 /root/oracle_test/abc/src/occi.h
-
-/root/oracle_test/abc/src/msg.c
-msg.h
-/root/oracle_test/abc/src/msg.h
-assert.h
--
-string.h
--
-logger.h
-/root/oracle_test/abc/src/logger.h
 
 include/client64/nzerror.h
 oratypes.h
@@ -223,20 +201,6 @@ oci.h
 include/crc_itu.h
 stdio.h
 -
-
-include/dispatcher.h
-event2/bufferevent.h
--
-event2/buffer.h
--
-event2/util.h
--
-event2/event.h
--
-stdlib.h
--
-engine.h
-include/engine.h
 
 include/engine.h
 event2/bufferevent.h

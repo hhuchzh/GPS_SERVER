@@ -8,11 +8,13 @@
 int valid_msg_header(const unsigned char *msg, int size)
 {
 	if (size < 2) {
+		LOG_ERROR("invalid msg header, size %d", size);
 		return 0;
 	}
 	
 	if( ((unsigned short)(msg[0] << 8 | msg[1])) != ((unsigned short)0x7878))
 	{
+		LOG_ERROR("invalid msg header, 0x%x 0x%x", msg[0], msg[1]);
 		return 0;
 	}
 
@@ -152,8 +154,21 @@ int parse_msg_data_req(const unsigned char *msg, int size, SMsgDataReq *req)
 	//assert(req);
 	//assert(size >= 36);
 
+#if DUMP_MSG	
+	for (i = 0; i < size / 8; i++) { 
+		for (j = 0; j < 8; j++) {
+			printf("0x%02X ", msg[8 * i + j]);
+		}
+		printf("\n");
+	}
+
+	for (j = 0; j < size % 8; j ++) {
+		printf("0x%02X ", msg[8 * i + j]);
+	}
+	printf("\n");
+#endif	
 	if (!msg || !req || size < 36) {
-		LOG_ERROR("invalid data reqest");
+		LOG_ERROR("invalid data reqest, msg len %d", size);
 		return 0;
 	}
 	
@@ -205,19 +220,6 @@ int parse_msg_data_req(const unsigned char *msg, int size, SMsgDataReq *req)
 	}
 
 	LOG_DEBUG("parse successfully");
-#if DUMP_MSG	
-	for (i = 0; i < len / 8; i++) { 
-		for (j = 0; j < 8; j++) {
-			printf("0x%02X ", msg[8 * i + j]);
-		}
-		printf("\n");
-	}
-
-	for (j = 0; j < len % 8; j ++) {
-		printf("0x%02X ", msg[8 * i + j]);
-	}
-	printf("\n");
-#endif	
 
 	return 1;	
 

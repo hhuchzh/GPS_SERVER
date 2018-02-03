@@ -83,14 +83,14 @@ static int Write_DB(SMsgDataReq *data,unsigned char device_id[8])
         sprintf(strid,"%02x%02x%02x%02x%02x%02x%02x%02x",device_id[0],device_id[1],device_id[2],device_id[3],device_id[4],device_id[5],device_id[6],device_id[7]);
 	strid[16]=0;
 	char time[50];
-	//INSERT INTO FLOOR VALUES ( to_date ( '2007-12-20 18:31:34' , 'YYYY-MM-DD HH24:MI:SS' ) ) ;
-	sprintf(time,"20%d-%d-%d %d:%d:%d",data->year,data->month,data->day,data->hour+8,data->minute,data->second);
-        string gps_time;
-	gps_time=time;
+	int hour=data->hour+8;
+	hour=hour>=24?hour-24:hour;
+
+	sprintf(time,"20%d-%d-%d %d:%d:%d",data->year,data->month,data->day,hour,data->minute,data->second);
 	
 	unsigned int id;
-        float latitude=(float)data->latitude/30000/60;
-        float longitude=(float)data->longitude/30000/60;
+	float latitude=(float)data->latitude/30000/60;
+	float longitude=(float)data->longitude/30000/60;
 
 	LOG_DEBUG("device ID:%s\n", strid);
 	LOG_DEBUG("GPS time:%s\n",  time);
@@ -104,8 +104,8 @@ static int Write_DB(SMsgDataReq *data,unsigned char device_id[8])
 
 	char sql[1000]={0};
 	
-	sprintf(sql, "insert into B_GPS_INFO(device_id, latitude,longitude,heading,speed,lat_type,lng_type,cell_id,gps_time) \
-	             values(%s,%f,%f,%d,%d,%d,%d,%d,to_date(\'%s\','YYYY-MM-DD HH24:MI:SS'))",strid,latitude,longitude,data->heading,data->speed,data->latitude_type,data->longitude_type,data->cell_id,time);
+	sprintf(sql, "insert into B_GPS_INFO(gps_id, device_id, latitude,longitude,heading,speed,lat_type,lng_type,cell_id,gps_time) \
+	             values(B_GPS_SEQ.nextVal,%s,%f,%f,%d,%d,%d,%d,%d,to_date(\'%s\','YYYY-MM-DD HH24:MI:SS'))",strid,latitude,longitude,data->heading,data->speed,data->latitude_type,data->longitude_type,data->cell_id,time);
         
 	LOG_DEBUG("sql:%s\n", sql);
 	//to_date('"&time&"','YYYY-MM-DD HH24:MI:SS')
