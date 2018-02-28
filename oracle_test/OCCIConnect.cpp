@@ -33,7 +33,7 @@ int main()
 	printf("db time:%s.\n", strTemp.c_str());
     // int类型取值用getInt()
 	break;
-                   }
+    }
 	pStmt->closeResultSet(pRs);
 	//--------插入---------
         // 指定DML为自动提交

@@ -9,8 +9,8 @@
 using namespace std;
 using namespace oracle::occi;
 
-Environment *env;
-Connection  *con;
+Environment *env=NULL;
+Connection  *con=NULL;
 
 Statement *pStmt = NULL;	  // Statement对象
 
@@ -19,17 +19,27 @@ static int connect_db()
     string name = "youtu";
     string pass = "Bagejiadao321";
     string srvName = "121.41.92.30:1521/orcl";
-    env = Environment::createEnvironment(Environment::DEFAULT);
-
-    con = env->createConnection(name, pass, srvName);
+    LOG_DEBUG("chenz try to connect DB\n");
+    if(env==NULL)
+    	env = Environment::createEnvironment(Environment::DEFAULT);
     if(con==NULL)
     {
-        LOG_ERROR("create Connection failed");
-        return -1;
-		
+	try
+   	{
+    	    con = env->createConnection(name, pass, srvName);
+	}
+   	catch (SQLException& ex)
+	{
+            LOG_DEBUG("chenz create Connection failed");
+     	    LOG_ERROR("chenz %s\n",ex.getMessage().c_str());
+            exit(EXIT_FAILURE);
+	    return -1;
+	}
+	
     }
-    LOG_DEBUG("success createConnection!");
-    return 1;
+    
+    LOG_DEBUG("chenz success createConnection!");
+    return 0;
 
 }
 
@@ -46,15 +56,26 @@ static int  check_db_Time()
  *       * the employees table and display the results
  *       */
 
-	pStmt = con->createStatement();
-	if(NULL == pStmt){
-		LOG_ERROR("createStatement error.\n");
-		return -1;
-	 }
+    LOG_DEBUG("chenz check the DB time\n");
+    if(pStmt==NULL)
+    {
+        try
+   	{
+            pStmt = con->createStatement();
+   	}
+  	catch (SQLException& ex)
+  	{
+     	    LOG_ERROR("chenz %s\n",ex.getMessage().c_str());
+	    return -1;
+   	}
+    }
 
-	 //查询数据库time
+    LOG_DEBUG("chenz DB time\n");
+    ResultSet *pRs;
+    if(pStmt!=NULL)
+    {
 	 string strTemp;
-	 ResultSet *pRs = pStmt->executeQuery( "SELECT TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI:SS') FROM DUAL");
+	 pRs = pStmt->executeQuery( "SELECT TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI:SS') FROM DUAL");
 
 	 if(pRs==NULL)
 	 	return -1;
@@ -65,19 +86,28 @@ static int  check_db_Time()
 	 	// int类型取值用getInt()
 		break;
 	}
-
- 
-	//pStmt->closeResultSet(pRs);
-	//con->terminateStatement(pStmt);
-	return 1;
+    }
+   // pStmt->closeResultSet(pRs);
+    //con->terminateStatement(pStmt);
+    return 0;
 	
 }
 
 static int Write_DB(SMsgDataReq *data,unsigned char device_id[8])
 {
-	if(NULL == pStmt){
-		pStmt = con->createStatement();
-	}
+    LOG_DEBUG("chenz begin to write DB\n");
+    if(pStmt==NULL)
+    {
+        try
+   	{
+            pStmt = con->createStatement();
+   	}
+  	catch (SQLException& ex)
+  	{
+     	    LOG_ERROR("chenz %s\n",ex.getMessage().c_str());
+	    return -1;
+   	}
+    }
 
         char strid[17];
         sprintf(strid,"%02x%02x%02x%02x%02x%02x%02x%02x",device_id[0],device_id[1],device_id[2],device_id[3],device_id[4],device_id[5],device_id[6],device_id[7]);
@@ -102,29 +132,38 @@ static int Write_DB(SMsgDataReq *data,unsigned char device_id[8])
 	LOG_DEBUG("long_type:%d\n", data->longitude_type);
 	LOG_DEBUG("cell_id:%d\n", data->cell_id);
 
+	if(data->day>31||latitude<3||latitude>53||longitude<73||longitude>135)
+		return -1;
+
 	char sql[1000]={0};
 	
 	sprintf(sql, "insert into B_GPS_INFO(gps_id, device_id, latitude,longitude,heading,speed,lat_type,lng_type,cell_id,gps_time) \
-	             values(B_GPS_SEQ.nextVal,%s,%f,%f,%d,%d,%d,%d,%d,to_date(\'%s\','YYYY-MM-DD HH24:MI:SS'))",strid,latitude,longitude,data->heading,data->speed,data->latitude_type,data->longitude_type,data->cell_id,time);
+	             values(B_GPS_SEQ.nextVal,\'%s\',%f,%f,%d,%d,%d,%d,%d,to_date(\'%s\','YYYY-MM-DD HH24:MI:SS'))",strid,latitude,longitude,data->heading,data->speed,data->latitude_type,data->longitude_type,data->cell_id,time);
         
 	LOG_DEBUG("sql:%s\n", sql);
-	//to_date('"&time&"','YYYY-MM-DD HH24:MI:SS')
-	//TO_TIMESTAMP(:time, 'YYYY-MM-DD HH24:MI:SS')
-
+    
+    if(pStmt)
+    {
 	pStmt->setAutoCommit(TRUE);
 	
 	//pStmt->setSQL("INSERT INTO B_GPS_INFO (device_id, latitude,longitude,heading,speed,lat_type,lng_type,cell_id,gps_time) VALUES ('"++"', 432443,65432,2,50,3435,498,123456,to_date('2004/05/07 13:23:44','yyyy/mm/dd hh24:mi:ss'))");
 	pStmt->setSQL(sql);
-	// 执行SQL语句
-	unsigned int nRet = pStmt->executeUpdate();
-	if(nRet == 0) {
-		LOG_DEBUG("executeUpdate insert error.\n");
-		return -1;
-	}
+	try 
+	{
+	    pStmt->executeUpdate();
+        }
+  	catch (SQLException& ex)
+  	{
+     	    LOG_ERROR("chenz %s\n",ex.getMessage().c_str());
+	   // disconnect_db();
+    //	    con->terminateStatement(pStmt);
+	    return -1;
+   	}
+    }
 
-	//pStmt->closeResultSet(nRet);
-	con->terminateStatement(pStmt);
-	return 1;
+    //pStmt->closeResultSet(nRet);
+    //con->terminateStatement(pStmt);
+    return 0;
 
 }
 
@@ -170,9 +209,10 @@ static int process_data_request(SGpsUser *user, unsigned char *msg, size_t sz)
 		user->update = 1;
 		LOG_DEBUG("[Engine:%d][FD:0x%x]process data msg, seq[%d]", user->engine->engine_no, user->fd, req.seq);
 		/*Fix me*/
-        	connect_db();
-        	check_db_Time();
-		Write_DB(&req,user->device_id);
+        	if(connect_db())
+		    return -1;
+		if(Write_DB(&req,user->device_id))
+		    return -1;
 	}
 
 	return ret;
