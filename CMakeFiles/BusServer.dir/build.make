@@ -38,10 +38,10 @@ EQUALS = =
 CMAKE_EDIT_COMMAND = /usr/bin/ccmake
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /root/oracle_test/abc
+CMAKE_SOURCE_DIR = /usr/local/GPS_Server/abc
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /root/oracle_test/abc
+CMAKE_BINARY_DIR = /usr/local/GPS_Server/abc
 
 # Include any dependencies generated for this target.
 include CMakeFiles/BusServer.dir/depend.make
@@ -54,17 +54,17 @@ include CMakeFiles/BusServer.dir/flags.make
 
 CMakeFiles/BusServer.dir/src/main.c.o: CMakeFiles/BusServer.dir/flags.make
 CMakeFiles/BusServer.dir/src/main.c.o: src/main.c
-	$(CMAKE_COMMAND) -E cmake_progress_report /root/oracle_test/abc/CMakeFiles $(CMAKE_PROGRESS_1)
+	$(CMAKE_COMMAND) -E cmake_progress_report /usr/local/GPS_Server/abc/CMakeFiles $(CMAKE_PROGRESS_1)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building C object CMakeFiles/BusServer.dir/src/main.c.o"
-	g++  $(C_DEFINES) $(C_FLAGS) -o CMakeFiles/BusServer.dir/src/main.c.o   -c /root/oracle_test/abc/src/main.c
+	g++  $(C_DEFINES) $(C_FLAGS) -o CMakeFiles/BusServer.dir/src/main.c.o   -c /usr/local/GPS_Server/abc/src/main.c
 
 CMakeFiles/BusServer.dir/src/main.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/BusServer.dir/src/main.c.i"
-	g++  $(C_DEFINES) $(C_FLAGS) -E /root/oracle_test/abc/src/main.c > CMakeFiles/BusServer.dir/src/main.c.i
+	g++  $(C_DEFINES) $(C_FLAGS) -E /usr/local/GPS_Server/abc/src/main.c > CMakeFiles/BusServer.dir/src/main.c.i
 
 CMakeFiles/BusServer.dir/src/main.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/BusServer.dir/src/main.c.s"
-	g++  $(C_DEFINES) $(C_FLAGS) -S /root/oracle_test/abc/src/main.c -o CMakeFiles/BusServer.dir/src/main.c.s
+	g++  $(C_DEFINES) $(C_FLAGS) -S /usr/local/GPS_Server/abc/src/main.c -o CMakeFiles/BusServer.dir/src/main.c.s
 
 CMakeFiles/BusServer.dir/src/main.c.o.requires:
 .PHONY : CMakeFiles/BusServer.dir/src/main.c.o.requires
@@ -77,17 +77,17 @@ CMakeFiles/BusServer.dir/src/main.c.o.provides.build: CMakeFiles/BusServer.dir/s
 
 CMakeFiles/BusServer.dir/src/logger.c.o: CMakeFiles/BusServer.dir/flags.make
 CMakeFiles/BusServer.dir/src/logger.c.o: src/logger.c
-	$(CMAKE_COMMAND) -E cmake_progress_report /root/oracle_test/abc/CMakeFiles $(CMAKE_PROGRESS_2)
+	$(CMAKE_COMMAND) -E cmake_progress_report /usr/local/GPS_Server/abc/CMakeFiles $(CMAKE_PROGRESS_2)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building C object CMakeFiles/BusServer.dir/src/logger.c.o"
-	g++  $(C_DEFINES) $(C_FLAGS) -o CMakeFiles/BusServer.dir/src/logger.c.o   -c /root/oracle_test/abc/src/logger.c
+	g++  $(C_DEFINES) $(C_FLAGS) -o CMakeFiles/BusServer.dir/src/logger.c.o   -c /usr/local/GPS_Server/abc/src/logger.c
 
 CMakeFiles/BusServer.dir/src/logger.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/BusServer.dir/src/logger.c.i"
-	g++  $(C_DEFINES) $(C_FLAGS) -E /root/oracle_test/abc/src/logger.c > CMakeFiles/BusServer.dir/src/logger.c.i
+	g++  $(C_DEFINES) $(C_FLAGS) -E /usr/local/GPS_Server/abc/src/logger.c > CMakeFiles/BusServer.dir/src/logger.c.i
 
 CMakeFiles/BusServer.dir/src/logger.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/BusServer.dir/src/logger.c.s"
-	g++  $(C_DEFINES) $(C_FLAGS) -S /root/oracle_test/abc/src/logger.c -o CMakeFiles/BusServer.dir/src/logger.c.s
+	g++  $(C_DEFINES) $(C_FLAGS) -S /usr/local/GPS_Server/abc/src/logger.c -o CMakeFiles/BusServer.dir/src/logger.c.s
 
 CMakeFiles/BusServer.dir/src/logger.c.o.requires:
 .PHONY : CMakeFiles/BusServer.dir/src/logger.c.o.requires
@@ -100,17 +100,17 @@ CMakeFiles/BusServer.dir/src/logger.c.o.provides.build: CMakeFiles/BusServer.dir
 
 CMakeFiles/BusServer.dir/src/dispatcher.c.o: CMakeFiles/BusServer.dir/flags.make
 CMakeFiles/BusServer.dir/src/dispatcher.c.o: src/dispatcher.c
-	$(CMAKE_COMMAND) -E cmake_progress_report /root/oracle_test/abc/CMakeFiles $(CMAKE_PROGRESS_3)
+	$(CMAKE_COMMAND) -E cmake_progress_report /usr/local/GPS_Server/abc/CMakeFiles $(CMAKE_PROGRESS_3)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building C object CMakeFiles/BusServer.dir/src/dispatcher.c.o"
-	g++  $(C_DEFINES) $(C_FLAGS) -o CMakeFiles/BusServer.dir/src/dispatcher.c.o   -c /root/oracle_test/abc/src/dispatcher.c
+	g++  $(C_DEFINES) $(C_FLAGS) -o CMakeFiles/BusServer.dir/src/dispatcher.c.o   -c /usr/local/GPS_Server/abc/src/dispatcher.c
 
 CMakeFiles/BusServer.dir/src/dispatcher.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/BusServer.dir/src/dispatcher.c.i"
-	g++  $(C_DEFINES) $(C_FLAGS) -E /root/oracle_test/abc/src/dispatcher.c > CMakeFiles/BusServer.dir/src/dispatcher.c.i
+	g++  $(C_DEFINES) $(C_FLAGS) -E /usr/local/GPS_Server/abc/src/dispatcher.c > CMakeFiles/BusServer.dir/src/dispatcher.c.i
 
 CMakeFiles/BusServer.dir/src/dispatcher.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/BusServer.dir/src/dispatcher.c.s"
-	g++  $(C_DEFINES) $(C_FLAGS) -S /root/oracle_test/abc/src/dispatcher.c -o CMakeFiles/BusServer.dir/src/dispatcher.c.s
+	g++  $(C_DEFINES) $(C_FLAGS) -S /usr/local/GPS_Server/abc/src/dispatcher.c -o CMakeFiles/BusServer.dir/src/dispatcher.c.s
 
 CMakeFiles/BusServer.dir/src/dispatcher.c.o.requires:
 .PHONY : CMakeFiles/BusServer.dir/src/dispatcher.c.o.requires
@@ -123,17 +123,17 @@ CMakeFiles/BusServer.dir/src/dispatcher.c.o.provides.build: CMakeFiles/BusServer
 
 CMakeFiles/BusServer.dir/src/engine.c.o: CMakeFiles/BusServer.dir/flags.make
 CMakeFiles/BusServer.dir/src/engine.c.o: src/engine.c
-	$(CMAKE_COMMAND) -E cmake_progress_report /root/oracle_test/abc/CMakeFiles $(CMAKE_PROGRESS_4)
+	$(CMAKE_COMMAND) -E cmake_progress_report /usr/local/GPS_Server/abc/CMakeFiles $(CMAKE_PROGRESS_4)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building C object CMakeFiles/BusServer.dir/src/engine.c.o"
-	g++  $(C_DEFINES) $(C_FLAGS) -o CMakeFiles/BusServer.dir/src/engine.c.o   -c /root/oracle_test/abc/src/engine.c
+	g++  $(C_DEFINES) $(C_FLAGS) -o CMakeFiles/BusServer.dir/src/engine.c.o   -c /usr/local/GPS_Server/abc/src/engine.c
 
 CMakeFiles/BusServer.dir/src/engine.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/BusServer.dir/src/engine.c.i"
-	g++  $(C_DEFINES) $(C_FLAGS) -E /root/oracle_test/abc/src/engine.c > CMakeFiles/BusServer.dir/src/engine.c.i
+	g++  $(C_DEFINES) $(C_FLAGS) -E /usr/local/GPS_Server/abc/src/engine.c > CMakeFiles/BusServer.dir/src/engine.c.i
 
 CMakeFiles/BusServer.dir/src/engine.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/BusServer.dir/src/engine.c.s"
-	g++  $(C_DEFINES) $(C_FLAGS) -S /root/oracle_test/abc/src/engine.c -o CMakeFiles/BusServer.dir/src/engine.c.s
+	g++  $(C_DEFINES) $(C_FLAGS) -S /usr/local/GPS_Server/abc/src/engine.c -o CMakeFiles/BusServer.dir/src/engine.c.s
 
 CMakeFiles/BusServer.dir/src/engine.c.o.requires:
 .PHONY : CMakeFiles/BusServer.dir/src/engine.c.o.requires
@@ -146,17 +146,17 @@ CMakeFiles/BusServer.dir/src/engine.c.o.provides.build: CMakeFiles/BusServer.dir
 
 CMakeFiles/BusServer.dir/src/gps_user.c.o: CMakeFiles/BusServer.dir/flags.make
 CMakeFiles/BusServer.dir/src/gps_user.c.o: src/gps_user.c
-	$(CMAKE_COMMAND) -E cmake_progress_report /root/oracle_test/abc/CMakeFiles $(CMAKE_PROGRESS_5)
+	$(CMAKE_COMMAND) -E cmake_progress_report /usr/local/GPS_Server/abc/CMakeFiles $(CMAKE_PROGRESS_5)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building C object CMakeFiles/BusServer.dir/src/gps_user.c.o"
-	g++  $(C_DEFINES) $(C_FLAGS) -o CMakeFiles/BusServer.dir/src/gps_user.c.o   -c /root/oracle_test/abc/src/gps_user.c
+	g++  $(C_DEFINES) $(C_FLAGS) -o CMakeFiles/BusServer.dir/src/gps_user.c.o   -c /usr/local/GPS_Server/abc/src/gps_user.c
 
 CMakeFiles/BusServer.dir/src/gps_user.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/BusServer.dir/src/gps_user.c.i"
-	g++  $(C_DEFINES) $(C_FLAGS) -E /root/oracle_test/abc/src/gps_user.c > CMakeFiles/BusServer.dir/src/gps_user.c.i
+	g++  $(C_DEFINES) $(C_FLAGS) -E /usr/local/GPS_Server/abc/src/gps_user.c > CMakeFiles/BusServer.dir/src/gps_user.c.i
 
 CMakeFiles/BusServer.dir/src/gps_user.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/BusServer.dir/src/gps_user.c.s"
-	g++  $(C_DEFINES) $(C_FLAGS) -S /root/oracle_test/abc/src/gps_user.c -o CMakeFiles/BusServer.dir/src/gps_user.c.s
+	g++  $(C_DEFINES) $(C_FLAGS) -S /usr/local/GPS_Server/abc/src/gps_user.c -o CMakeFiles/BusServer.dir/src/gps_user.c.s
 
 CMakeFiles/BusServer.dir/src/gps_user.c.o.requires:
 .PHONY : CMakeFiles/BusServer.dir/src/gps_user.c.o.requires
@@ -169,17 +169,17 @@ CMakeFiles/BusServer.dir/src/gps_user.c.o.provides.build: CMakeFiles/BusServer.d
 
 CMakeFiles/BusServer.dir/src/crc_itu.c.o: CMakeFiles/BusServer.dir/flags.make
 CMakeFiles/BusServer.dir/src/crc_itu.c.o: src/crc_itu.c
-	$(CMAKE_COMMAND) -E cmake_progress_report /root/oracle_test/abc/CMakeFiles $(CMAKE_PROGRESS_6)
+	$(CMAKE_COMMAND) -E cmake_progress_report /usr/local/GPS_Server/abc/CMakeFiles $(CMAKE_PROGRESS_6)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building C object CMakeFiles/BusServer.dir/src/crc_itu.c.o"
-	g++  $(C_DEFINES) $(C_FLAGS) -o CMakeFiles/BusServer.dir/src/crc_itu.c.o   -c /root/oracle_test/abc/src/crc_itu.c
+	g++  $(C_DEFINES) $(C_FLAGS) -o CMakeFiles/BusServer.dir/src/crc_itu.c.o   -c /usr/local/GPS_Server/abc/src/crc_itu.c
 
 CMakeFiles/BusServer.dir/src/crc_itu.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/BusServer.dir/src/crc_itu.c.i"
-	g++  $(C_DEFINES) $(C_FLAGS) -E /root/oracle_test/abc/src/crc_itu.c > CMakeFiles/BusServer.dir/src/crc_itu.c.i
+	g++  $(C_DEFINES) $(C_FLAGS) -E /usr/local/GPS_Server/abc/src/crc_itu.c > CMakeFiles/BusServer.dir/src/crc_itu.c.i
 
 CMakeFiles/BusServer.dir/src/crc_itu.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/BusServer.dir/src/crc_itu.c.s"
-	g++  $(C_DEFINES) $(C_FLAGS) -S /root/oracle_test/abc/src/crc_itu.c -o CMakeFiles/BusServer.dir/src/crc_itu.c.s
+	g++  $(C_DEFINES) $(C_FLAGS) -S /usr/local/GPS_Server/abc/src/crc_itu.c -o CMakeFiles/BusServer.dir/src/crc_itu.c.s
 
 CMakeFiles/BusServer.dir/src/crc_itu.c.o.requires:
 .PHONY : CMakeFiles/BusServer.dir/src/crc_itu.c.o.requires
@@ -192,17 +192,17 @@ CMakeFiles/BusServer.dir/src/crc_itu.c.o.provides.build: CMakeFiles/BusServer.di
 
 CMakeFiles/BusServer.dir/src/msg.c.o: CMakeFiles/BusServer.dir/flags.make
 CMakeFiles/BusServer.dir/src/msg.c.o: src/msg.c
-	$(CMAKE_COMMAND) -E cmake_progress_report /root/oracle_test/abc/CMakeFiles $(CMAKE_PROGRESS_7)
+	$(CMAKE_COMMAND) -E cmake_progress_report /usr/local/GPS_Server/abc/CMakeFiles $(CMAKE_PROGRESS_7)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building C object CMakeFiles/BusServer.dir/src/msg.c.o"
-	g++  $(C_DEFINES) $(C_FLAGS) -o CMakeFiles/BusServer.dir/src/msg.c.o   -c /root/oracle_test/abc/src/msg.c
+	g++  $(C_DEFINES) $(C_FLAGS) -o CMakeFiles/BusServer.dir/src/msg.c.o   -c /usr/local/GPS_Server/abc/src/msg.c
 
 CMakeFiles/BusServer.dir/src/msg.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/BusServer.dir/src/msg.c.i"
-	g++  $(C_DEFINES) $(C_FLAGS) -E /root/oracle_test/abc/src/msg.c > CMakeFiles/BusServer.dir/src/msg.c.i
+	g++  $(C_DEFINES) $(C_FLAGS) -E /usr/local/GPS_Server/abc/src/msg.c > CMakeFiles/BusServer.dir/src/msg.c.i
 
 CMakeFiles/BusServer.dir/src/msg.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/BusServer.dir/src/msg.c.s"
-	g++  $(C_DEFINES) $(C_FLAGS) -S /root/oracle_test/abc/src/msg.c -o CMakeFiles/BusServer.dir/src/msg.c.s
+	g++  $(C_DEFINES) $(C_FLAGS) -S /usr/local/GPS_Server/abc/src/msg.c -o CMakeFiles/BusServer.dir/src/msg.c.s
 
 CMakeFiles/BusServer.dir/src/msg.c.o.requires:
 .PHONY : CMakeFiles/BusServer.dir/src/msg.c.o.requires
@@ -215,17 +215,17 @@ CMakeFiles/BusServer.dir/src/msg.c.o.provides.build: CMakeFiles/BusServer.dir/sr
 
 CMakeFiles/BusServer.dir/src/listener.c.o: CMakeFiles/BusServer.dir/flags.make
 CMakeFiles/BusServer.dir/src/listener.c.o: src/listener.c
-	$(CMAKE_COMMAND) -E cmake_progress_report /root/oracle_test/abc/CMakeFiles $(CMAKE_PROGRESS_8)
+	$(CMAKE_COMMAND) -E cmake_progress_report /usr/local/GPS_Server/abc/CMakeFiles $(CMAKE_PROGRESS_8)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building C object CMakeFiles/BusServer.dir/src/listener.c.o"
-	g++  $(C_DEFINES) $(C_FLAGS) -o CMakeFiles/BusServer.dir/src/listener.c.o   -c /root/oracle_test/abc/src/listener.c
+	g++  $(C_DEFINES) $(C_FLAGS) -o CMakeFiles/BusServer.dir/src/listener.c.o   -c /usr/local/GPS_Server/abc/src/listener.c
 
 CMakeFiles/BusServer.dir/src/listener.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/BusServer.dir/src/listener.c.i"
-	g++  $(C_DEFINES) $(C_FLAGS) -E /root/oracle_test/abc/src/listener.c > CMakeFiles/BusServer.dir/src/listener.c.i
+	g++  $(C_DEFINES) $(C_FLAGS) -E /usr/local/GPS_Server/abc/src/listener.c > CMakeFiles/BusServer.dir/src/listener.c.i
 
 CMakeFiles/BusServer.dir/src/listener.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/BusServer.dir/src/listener.c.s"
-	g++  $(C_DEFINES) $(C_FLAGS) -S /root/oracle_test/abc/src/listener.c -o CMakeFiles/BusServer.dir/src/listener.c.s
+	g++  $(C_DEFINES) $(C_FLAGS) -S /usr/local/GPS_Server/abc/src/listener.c -o CMakeFiles/BusServer.dir/src/listener.c.s
 
 CMakeFiles/BusServer.dir/src/listener.c.o.requires:
 .PHONY : CMakeFiles/BusServer.dir/src/listener.c.o.requires
@@ -282,6 +282,6 @@ CMakeFiles/BusServer.dir/clean:
 .PHONY : CMakeFiles/BusServer.dir/clean
 
 CMakeFiles/BusServer.dir/depend:
-	cd /root/oracle_test/abc && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /root/oracle_test/abc /root/oracle_test/abc /root/oracle_test/abc /root/oracle_test/abc /root/oracle_test/abc/CMakeFiles/BusServer.dir/DependInfo.cmake --color=$(COLOR)
+	cd /usr/local/GPS_Server/abc && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /usr/local/GPS_Server/abc /usr/local/GPS_Server/abc /usr/local/GPS_Server/abc /usr/local/GPS_Server/abc /usr/local/GPS_Server/abc/CMakeFiles/BusServer.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/BusServer.dir/depend
 

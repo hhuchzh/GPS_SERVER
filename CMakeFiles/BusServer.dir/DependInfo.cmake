@@ -4,14 +4,14 @@ SET(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 SET(CMAKE_DEPENDS_CHECK_C
-  "/root/oracle_test/abc/src/crc_itu.c" "/root/oracle_test/abc/CMakeFiles/BusServer.dir/src/crc_itu.c.o"
-  "/root/oracle_test/abc/src/dispatcher.c" "/root/oracle_test/abc/CMakeFiles/BusServer.dir/src/dispatcher.c.o"
-  "/root/oracle_test/abc/src/engine.c" "/root/oracle_test/abc/CMakeFiles/BusServer.dir/src/engine.c.o"
-  "/root/oracle_test/abc/src/gps_user.c" "/root/oracle_test/abc/CMakeFiles/BusServer.dir/src/gps_user.c.o"
-  "/root/oracle_test/abc/src/listener.c" "/root/oracle_test/abc/CMakeFiles/BusServer.dir/src/listener.c.o"
-  "/root/oracle_test/abc/src/logger.c" "/root/oracle_test/abc/CMakeFiles/BusServer.dir/src/logger.c.o"
-  "/root/oracle_test/abc/src/main.c" "/root/oracle_test/abc/CMakeFiles/BusServer.dir/src/main.c.o"
-  "/root/oracle_test/abc/src/msg.c" "/root/oracle_test/abc/CMakeFiles/BusServer.dir/src/msg.c.o"
+  "/usr/local/GPS_Server/abc/src/crc_itu.c" "/usr/local/GPS_Server/abc/CMakeFiles/BusServer.dir/src/crc_itu.c.o"
+  "/usr/local/GPS_Server/abc/src/dispatcher.c" "/usr/local/GPS_Server/abc/CMakeFiles/BusServer.dir/src/dispatcher.c.o"
+  "/usr/local/GPS_Server/abc/src/engine.c" "/usr/local/GPS_Server/abc/CMakeFiles/BusServer.dir/src/engine.c.o"
+  "/usr/local/GPS_Server/abc/src/gps_user.c" "/usr/local/GPS_Server/abc/CMakeFiles/BusServer.dir/src/gps_user.c.o"
+  "/usr/local/GPS_Server/abc/src/listener.c" "/usr/local/GPS_Server/abc/CMakeFiles/BusServer.dir/src/listener.c.o"
+  "/usr/local/GPS_Server/abc/src/logger.c" "/usr/local/GPS_Server/abc/CMakeFiles/BusServer.dir/src/logger.c.o"
+  "/usr/local/GPS_Server/abc/src/main.c" "/usr/local/GPS_Server/abc/CMakeFiles/BusServer.dir/src/main.c.o"
+  "/usr/local/GPS_Server/abc/src/msg.c" "/usr/local/GPS_Server/abc/CMakeFiles/BusServer.dir/src/msg.c.o"
   )
 SET(CMAKE_C_COMPILER_ID "GNU")
 

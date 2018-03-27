@@ -1,1 +1,1 @@
-/root/oracle_test/abc/CMakeFiles/BusServer.dir
+/usr/local/GPS_Server/abc/CMakeFiles/BusServer.dir
