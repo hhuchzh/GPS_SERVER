@@ -6,12 +6,6 @@
 
 #IncludeRegexTransform: 
 
-/usr/local/GPS_Server/abc/src/crc_itu.c
-crc_itu.h
-/usr/local/GPS_Server/abc/src/crc_itu.h
-logger.h
-/usr/local/GPS_Server/abc/src/logger.h
-
 /usr/local/GPS_Server/abc/src/dispatcher.c
 errno.h
 -
@@ -58,16 +52,6 @@ listener.h
 logger.h
 /usr/local/GPS_Server/abc/src/logger.h
 
-/usr/local/GPS_Server/abc/src/logger.c
-logger.h
-/usr/local/GPS_Server/abc/src/logger.h
-stdio.h
--
-assert.h
--
-string.h
--
-
 /usr/local/GPS_Server/abc/src/main.c
 listener.h
 /usr/local/GPS_Server/abc/src/listener.h
@@ -79,16 +63,6 @@ crc_itu.h
 /usr/local/GPS_Server/abc/src/crc_itu.h
 msg.h
 /usr/local/GPS_Server/abc/src/msg.h
-logger.h
-/usr/local/GPS_Server/abc/src/logger.h
-
-/usr/local/GPS_Server/abc/src/msg.c
-msg.h
-/usr/local/GPS_Server/abc/src/msg.h
-assert.h
--
-string.h
--
 logger.h
 /usr/local/GPS_Server/abc/src/logger.h
 
