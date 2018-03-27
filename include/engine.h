@@ -7,6 +7,9 @@
 #include <event2/event.h>
 #include <pthread.h> 
 #include <stdio.h>
+#include "occi.h"
+using namespace std;
+using namespace oracle::occi;
 
 
 enum EngineStatus {
@@ -21,6 +24,11 @@ typedef struct _Engine {
 	struct event_base *base;
 	pthread_t tid;
 	enum EngineStatus status;
+
+	/* Fix me*/
+	Environment *env;
+	Connection  *con;	
+	Statement *stmt;
 }SEngine;
 
 SEngine *create_engine(int no);

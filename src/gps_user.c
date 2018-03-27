@@ -93,24 +93,16 @@ static int  check_db_Time()
 	
 }
 
-static int Write_DB(SMsgDataReq *data,unsigned char device_id[8])
+static int Write_DB(SGpsUser *user, SMsgDataReq *data,unsigned char device_id[8])
 {
     LOG_DEBUG("chenz begin to write DB\n");
-    if(pStmt==NULL)
-    {
-        try
-   	{
-            pStmt = con->createStatement();
-   	}
-  	catch (SQLException& ex)
-  	{
-     	    LOG_ERROR("chenz %s\n",ex.getMessage().c_str());
-	    return -1;
-   	}
-    }
+	Statement *pTmpStmt = user->engine->stmt;
+	assert(user);
+	assert(pTmpStmt);
 
-        char strid[17];
-        sprintf(strid,"%02x%02x%02x%02x%02x%02x%02x%02x",device_id[0],device_id[1],device_id[2],device_id[3],device_id[4],device_id[5],device_id[6],device_id[7]);
+
+    char strid[17];
+    sprintf(strid,"%02x%02x%02x%02x%02x%02x%02x%02x",device_id[0],device_id[1],device_id[2],device_id[3],device_id[4],device_id[5],device_id[6],device_id[7]);
 	strid[16]=0;
 	char time[50];
 	int hour=data->hour+8;
@@ -142,18 +134,14 @@ static int Write_DB(SMsgDataReq *data,unsigned char device_id[8])
         
 	LOG_DEBUG("sql:%s\n", sql);
     
-    if(pStmt)
-    {
-	pStmt->setAutoCommit(TRUE);
+    if(pTmpStmt) {
+		pTmpStmt->setAutoCommit(TRUE);
 	
 	//pStmt->setSQL("INSERT INTO B_GPS_INFO (device_id, latitude,longitude,heading,speed,lat_type,lng_type,cell_id,gps_time) VALUES ('"++"', 432443,65432,2,50,3435,498,123456,to_date('2004/05/07 13:23:44','yyyy/mm/dd hh24:mi:ss'))");
-	pStmt->setSQL(sql);
-	try 
-	{
-	    pStmt->executeUpdate();
-        }
-  	catch (SQLException& ex)
-  	{
+		pTmpStmt->setSQL(sql);
+		try  {
+	    	pTmpStmt->executeUpdate();
+        } catch (SQLException& ex) {
      	    LOG_ERROR("chenz %s\n",ex.getMessage().c_str());
 	   // disconnect_db();
     //	    con->terminateStatement(pStmt);
@@ -209,9 +197,9 @@ static int process_data_request(SGpsUser *user, unsigned char *msg, size_t sz)
 		user->update = 1;
 		LOG_DEBUG("[Engine:%d][FD:0x%x]process data msg, seq[%d]", user->engine->engine_no, user->fd, req.seq);
 		/*Fix me*/
-        	if(connect_db())
-		    return -1;
-		if(Write_DB(&req,user->device_id))
+        	//if(connect_db())
+		   // return -1;
+		if(Write_DB(user,&req,user->device_id))
 		    return -1;
 	}
 

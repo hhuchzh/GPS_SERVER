@@ -3,7 +3,12 @@
 #include <stdlib.h>
 #include <assert.h>
 #include "logger.h"
+#include "occi.h"
 
+
+static string name = "youtu";
+static string pass = "Bagejiadao321";
+static string srvName = "121.41.92.30:1521/orcl";
 
 
 static void *engine_thr_fn(void *arg)
@@ -39,6 +44,24 @@ SEngine *create_engine(int no)
 
 	engine->engine_no = no;
 	engine->status = ENGINE_STATUS_INIT;
+
+	/*Fix me*/
+	
+    engine->env = Environment::createEnvironment(Environment::DEFAULT);
+	try{
+    	   engine->con = engine->env->createConnection(name, pass, srvName);
+	} catch (SQLException& ex){
+            LOG_DEBUG("chenz create Connection failed");
+     	    LOG_ERROR("chenz %s\n",ex.getMessage().c_str());
+            exit(EXIT_FAILURE);
+	}
+
+    try{
+        engine->stmt = engine->con->createStatement();
+   	}catch (SQLException& ex) {
+     	LOG_ERROR("chenz %s\n",ex.getMessage().c_str());
+	    exit(EXIT_FAILURE);
+   	}	
 
 	LOG_INFO("create engine %d", no);
 
