@@ -5,11 +5,9 @@
 #include "logger.h"
 #include "occi.h"
 
-
 static string name = "youtu";
-static string pass = "Bagejiadao321";
-static string srvName = "121.41.92.30:1521/orcl";
-
+static string pass = "QWE123asd";
+static string srvName = "121.40.19.77:1521/orcl";
 
 static void *engine_thr_fn(void *arg)
 {
